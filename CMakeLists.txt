@@ -11,7 +11,7 @@ set(CMAKE_CXX_STANDARD 17)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
 message("PROJECT_SOURCE_DIR = ${PROJECT_SOURCE_DIR}")
 
-# 设置运行时库选项
+# Set runtime library options
 if (MSVC)
     set(CMAKE_CXX_FLAGS_DEBUG "${CMAKE_CXX_FLAGS_DEBUG}/MDd")
     set(CMAKE_CXX_FLAGS_RELEASE "${CMAKE_CXX_FLAGS_RELEASE}/MD")
@@ -26,11 +26,11 @@ else()
     find_package(MPI REQUIRED)
 endif()
 
-# 显示 MPI 库和头文件信息
+# Display MPI library and header file information
 message(STATUS "MPI Include Path: ${MPI_INCLUDE_PATH}")
 message(STATUS "MPI Libraries: ${MPI_LIBRARIES}")
 
-# 添加 MPI 包含路径
+#Add MPI include path
 include_directories(${MPI_INCLUDE_PATH})
 include_directories(${CMAKE_SOURCE_DIR}/src)
 
@@ -40,9 +40,9 @@ set(SOURCES
 )
 add_executable(MPI-Test ${SOURCES})
 
-# 链接 MPI 库
+# Link MPI library
 target_link_libraries(MPI-Test ${MPI_LIBRARIES})
 
-# Set Install
+# Set Install(optional)
 set(CMAKE_INSTALL_PREFIX "./bin")
 install(TARGETS MPI-Test DESTINATION bin)
